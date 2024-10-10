@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set the working directory in the container
-WORKDIR /cbot/app
+WORKDIR /cbot
 
 # Copy the current directory contents into the container at /cbot
 COPY . /cbot
@@ -11,6 +11,8 @@ COPY . /cbot
 # If you have a requirements file, otherwise remove these lines.
 COPY ./requirements.txt /cbot/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
+ENV PYTHONPATH="${PYTHONPATH}:/cbot/app"
 
 # Expose port 8000 to the outside world
 EXPOSE 8000
